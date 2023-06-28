@@ -1,9 +1,15 @@
-
+import Tilt from 'react-parallax-tilt';
 
 const Logo = () => {
 
   return(
-    <p>Logo</p>
+    <div className='ma4 mt0'>
+      <Tilt>
+        <div style={{ height: '300px', backgroundColor: 'darkgreen' }}>
+          <h1>React Parallax Tilt 👀</h1>
+        </div>
+      </Tilt>
+      </div>
   )
 }
 
