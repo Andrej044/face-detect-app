@@ -1,10 +1,12 @@
 import './App.css';
+import Navigation from './components/navigation/Navigation'
+
 
 function App() {
   return (
     <div className="App">
-     {/* {<Navitaion />
-     <Logo />
+     <Navigation />
+     {/* <Logo />
      <ImageLinkForm />
      <FaceRecognition />} */}
     </div>
