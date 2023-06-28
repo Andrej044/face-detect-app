@@ -1,5 +1,6 @@
 import Tilt from 'react-parallax-tilt';
-import "./Logo.css"
+import brain from "./brain.png"
+import "./Logo.css";
 
 const Logo = () => {
 
@@ -7,7 +8,7 @@ const Logo = () => {
     <div className='Logo ma4 mt0'>
       <Tilt className='Tilt br2 shadow-2' glareEnable={true} gyroscope={true}>
         <div>
-          <h1>React Parallax Tilt 👀</h1>
+          <img src={brain} alt='logo' />
         </div>
       </Tilt>
       </div>
