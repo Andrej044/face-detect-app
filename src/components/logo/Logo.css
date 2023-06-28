@@ -3,8 +3,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
-  max-width: 250px;
+  height: 200px;
+  max-width: 200px;
   background: linear-gradient(89deg, #FF5EDF 0%, #04C8DE 100% );
 
 }
