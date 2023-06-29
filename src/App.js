@@ -105,6 +105,10 @@ function App() {
     console.log(event.target.value);
   }
 
+  const onButtonSubmit = () => {
+    console.log("click")
+  }
+
   
   const particlesInit = useCallback(async engine => {
     await loadFull(engine);
@@ -121,7 +125,7 @@ function App() {
       <Navigation />
       <Logo />
       <Rank/>
-      <ImageLinkForm onInputChange={onInputChange}/>
+      <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
      {/*<FaceRecognition /> */}
     </div>
   );
