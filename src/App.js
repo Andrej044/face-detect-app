@@ -3,7 +3,7 @@ import Navigation from './components/navigation/Navigation';
 import Logo from './components/logo/Logo';
 import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
@@ -98,26 +98,30 @@ const particlesOptions = {
 
 function App() {
 
+  const [input] = useState(" ");
+  
+  const onInputChange = (event) => {
+    console.log(input);
+    console.log(event.target.value);
+  }
+
+  
   const particlesInit = useCallback(async engine => {
     await loadFull(engine);
 }, []);
 
-// const particlesLoaded = useCallback(async container => {
-//     await console.log(container);
-// }, []);
   return (
     <div className="App">
        <Particles
             className='particles'
             id="tsparticles"
             init={particlesInit}
-            // loaded={particlesLoaded}
             options={particlesOptions}
         />
       <Navigation />
       <Logo />
       <Rank/>
-      <ImageLinkForm />
+      <ImageLinkForm onInputChange={onInputChange}/>
      {/*<FaceRecognition /> */}
     </div>
   );
