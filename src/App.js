@@ -141,7 +141,11 @@ function App() {
 
     const [box, setBox] = useState({});
 
-    const [route] = useState('signin');
+    const [route, setRoute] = useState('signin');
+
+    const onRouteChange = () => {
+        setRoute('home');
+    }
 
     const getBoxFaceData = (box) => {
         const img = document.getElementById("face-recognise-img");
@@ -186,7 +190,7 @@ return (
         />
         <Navigation />
         <Logo />
-        {route === 'signin' ? <SignIn /> : 
+        {route === 'signin' ? <SignIn onRouteChange = {onRouteChange}/> : 
         <>
             <Rank/>
             <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
