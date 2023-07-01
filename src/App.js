@@ -156,14 +156,14 @@ function App() {
     }
 
     const onInputChange = (event) => {
-    setInput(event.target.value);
+        setInput(event.target.value);
     }
 
     const onButtonSubmit = () => {
         setImageUrl(inputUrl);
         fetch("https://api.clarifai.com/v2/models/" + 'face-detection' +  "/outputs", returnClarifaiRequestOptions(inputUrl))
         .then(response => response.json())
-        .then(result => console.log("hi",getBoxFaceData(result)))
+        .then(result => getBoxFaceData(result))
         .catch(error => console.log('error', error));
 
     }
