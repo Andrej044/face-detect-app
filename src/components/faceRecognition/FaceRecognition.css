@@ -1,0 +1,8 @@
+.face-box{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  box-shadow: 0 0 3px 3px #149df2 inset;
+  cursor: pointer;
+}
