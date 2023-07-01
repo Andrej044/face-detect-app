@@ -1,8 +1,9 @@
 import './App.css';
 import Navigation from './components/navigation/Navigation';
+import Rank from './components/Rank/Rank';
 import Logo from './components/logo/Logo';
 import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
-import Rank from './components/Rank/Rank';
+import FaceRecognition from './components/faceRecognition/FaceRecognition';
 import { useCallback, useState } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
@@ -165,7 +166,7 @@ function App() {
       <Logo />
       <Rank/>
       <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
-     {/*<FaceRecognition /> */}
+      <FaceRecognition />
     </div>
   );
 }
