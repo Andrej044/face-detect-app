@@ -1,5 +1,6 @@
 import './App.css';
 import Navigation from './components/navigation/Navigation';
+import SignIn from './components/signIn/SignIn';
 import Rank from './components/Rank/Rank';
 import Logo from './components/logo/Logo';
 import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
@@ -183,6 +184,7 @@ return (
         />
         <Navigation />
         <Logo />
+        <SignIn/>
         <Rank/>
         <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
         <FaceRecognition imageUrl={imageUrl} box = {box}/>
