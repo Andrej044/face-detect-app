@@ -146,7 +146,7 @@ function App() {
     setImageUrl(inputUrl);
     fetch("https://api.clarifai.com/v2/models/" + 'face-detection' +  "/outputs", returnClarifaiRequestOptions(inputUrl))
     .then(response => response.json())
-    .then(result => console.log("hi",result))
+    .then(result => console.log("hi",result.outputs[0].data.regions[0].region_info.bounding_box))
     .catch(error => console.log('error', error));
 
   }
