@@ -95,6 +95,16 @@ const particlesOptions = {
     },
 }
 
+const setupClarifai = (url) => {
+    const PAT = '1b43454f514e47ed9fc75b63f48df8a7';
+    const USER_ID = 'andrej044';       
+    const APP_ID = 'smart-brain';
+    const MODEL_ID = 'face-detection';
+    const IMAGE_URL = url;
+
+}
+
+
 
 function App() {
 
