@@ -1,10 +1,14 @@
 
 .Tilt{
+  position:absolute;
+  top:0;
+  left:0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 200px;
-  max-width: 200px;
+  width:200px;
+  max-width: 300px;
   background: linear-gradient(89deg, #FF5EDF 0%, #04C8DE 100% );
 
 }
