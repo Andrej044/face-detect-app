@@ -143,8 +143,8 @@ function App() {
 
     const [route, setRoute] = useState('signin');
 
-    const onRouteChange = () => {
-        setRoute('home');
+    const onRouteChange = (route) => {
+        setRoute(route);
     }
 
     const getBoxFaceData = (box) => {
@@ -188,7 +188,7 @@ return (
             init={particlesInit}
             options={particlesOptions}
         />
-        <Navigation />
+        <Navigation onRouteChange = {onRouteChange} />
         <Logo />
         {route === 'signin' ? <SignIn onRouteChange = {onRouteChange}/> : 
         <>
