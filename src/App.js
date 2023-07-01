@@ -134,43 +134,60 @@ const returnClarifaiRequestOptions = (url) => {
 
 function App() {
 
-  const [inputUrl, setInput] = useState(" ");
+    const [inputUrl, setInput] = useState(" ");
 
-  const [imageUrl, setImageUrl] = useState(" ");
-  
-  const onInputChange = (event) => {
+    const [imageUrl, setImageUrl] = useState(" ");
+
+    const [box, setBox] = useState({});
+
+    const getBoxFaceData = (box) => {
+        const img = document.getElementById("face-recognise-img");
+        const imgWidth = Number(img.width); 
+        const imgHeight = Number(img.height); 
+
+        const {bottom_row, left_col, right_col, top_row} = box.outputs[0].data.regions[0].region_info.bounding_box;
+       
+        setBox({
+        top:top_row * imgHeight,
+        left:left_col * imgWidth,
+        right:imgWidth - (imgWidth * right_col),
+        bottom:imgHeight - (imgHeight * bottom_row)
+        })
+    }
+
+    const onInputChange = (event) => {
     setInput(event.target.value);
-  }
+    }
 
-  const onButtonSubmit = () => {
-    setImageUrl(inputUrl);
-    fetch("https://api.clarifai.com/v2/models/" + 'face-detection' +  "/outputs", returnClarifaiRequestOptions(inputUrl))
-    .then(response => response.json())
-    .then(result => console.log("hi",result.outputs[0].data.regions[0].region_info.bounding_box))
-    .catch(error => console.log('error', error));
+    const onButtonSubmit = () => {
+        setImageUrl(inputUrl);
+        fetch("https://api.clarifai.com/v2/models/" + 'face-detection' +  "/outputs", returnClarifaiRequestOptions(inputUrl))
+        .then(response => response.json())
+        .then(result => console.log("hi",getBoxFaceData(result)))
+        .catch(error => console.log('error', error));
 
-  }
+    }
 
-  
-  const particlesInit = useCallback(async engine => {
+
+    const particlesInit = useCallback(async engine => {
     await loadFull(engine);
 }, []);
 
-  return (
+return (
     <div className="App">
-       <Particles
+        <Particles
             className='particles'
             id="tsparticles"
             init={particlesInit}
             options={particlesOptions}
         />
-      <Navigation />
-      <Logo />
-      <Rank/>
-      <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
-      <FaceRecognition imageUrl={imageUrl}/>
+        <Navigation />
+        <Logo />
+        <Rank/>
+        <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
+        <FaceRecognition imageUrl={imageUrl} box = {box}/>
     </div>
-  );
+);
 }
 
 export default App;
