@@ -95,28 +95,57 @@ const particlesOptions = {
     },
 }
 
-const setupClarifai = (url) => {
+const returnClarifaiRequestOptions = (url) => {
     const PAT = '1b43454f514e47ed9fc75b63f48df8a7';
     const USER_ID = 'andrej044';       
     const APP_ID = 'smart-brain';
     const MODEL_ID = 'face-detection';
     const IMAGE_URL = url;
 
-}
+    const raw = JSON.stringify({
+        "user_app_id": {
+            "user_id": USER_ID,
+            "app_id": APP_ID
+        },
+        "inputs": [
+            {
+                "data": {
+                    "image": {
+                        "url": IMAGE_URL
+                    }
+                }
+            }
+        ]
+    });
+    
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Key ' + PAT
+        },
+        body: raw
+    };
 
+    return requestOptions;
+}
 
 
 function App() {
 
-  const [input] = useState(" ");
+  const [inputUrl, setInput] = useState(" ");
   
   const onInputChange = (event) => {
-    console.log(input);
-    console.log(event.target.value);
+    console.log(inputUrl);
+    setInput(event.target.value);
   }
 
   const onButtonSubmit = () => {
-    console.log("click")
+    fetch("https://api.clarifai.com/v2/models/" + 'face-detection' +  "/outputs", returnClarifaiRequestOptions(inputUrl))
+    .then(response => response.json())
+    .then(result => console.log("hi",result))
+    .catch(error => console.log('error', error));
+
   }
 
   
