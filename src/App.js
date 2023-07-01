@@ -135,13 +135,15 @@ const returnClarifaiRequestOptions = (url) => {
 function App() {
 
   const [inputUrl, setInput] = useState(" ");
+
+  const [imageUrl, setImageUrl] = useState(" ");
   
   const onInputChange = (event) => {
-    console.log(inputUrl);
     setInput(event.target.value);
   }
 
   const onButtonSubmit = () => {
+    setImageUrl(inputUrl);
     fetch("https://api.clarifai.com/v2/models/" + 'face-detection' +  "/outputs", returnClarifaiRequestOptions(inputUrl))
     .then(response => response.json())
     .then(result => console.log("hi",result))
@@ -166,7 +168,7 @@ function App() {
       <Logo />
       <Rank/>
       <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
-      <FaceRecognition />
+      <FaceRecognition imageUrl={imageUrl}/>
     </div>
   );
 }
