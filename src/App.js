@@ -191,12 +191,18 @@ return (
         />
         <Navigation onRouteChange = {onRouteChange} />
         <Logo />
-        {route === 'signin' ? <SignIn onRouteChange = {onRouteChange}/> : 
+        {
+            route === 'home' ?
         <>
             <Rank/>
             <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
             <FaceRecognition imageUrl={imageUrl} box = {box}/>
-        </> }
+        </>: (
+            route === 'signin' ?
+            <SignIn onRouteChange = {onRouteChange}/> :
+            <RegisterForm onRouteChange = {onRouteChange}/>
+            ) 
+        }
     </div>
 );
 }
