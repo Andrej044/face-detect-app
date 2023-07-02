@@ -1,6 +1,7 @@
 import './App.css';
 import Navigation from './components/navigation/Navigation';
 import SignIn from './components/signIn/SignIn';
+import RegisterForm from './components/register/Register';
 import Rank from './components/Rank/Rank';
 import Logo from './components/logo/Logo';
 import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
