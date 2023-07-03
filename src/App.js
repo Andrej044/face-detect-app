@@ -143,8 +143,15 @@ function App() {
     const [box, setBox] = useState({});
 
     const [route, setRoute] = useState('signin');
+    
+    const [isSignedIn, setSignedIn] = useState(false);
 
     const onRouteChange = (route) => {
+        if(route === "signout") {
+            setSignedIn(false);
+        } else if(route === "home"){
+            setSignedIn(true);
+        }
         setRoute(route);
     }
 
@@ -189,7 +196,7 @@ return (
             init={particlesInit}
             options={particlesOptions}
         />
-        <Navigation onRouteChange = {onRouteChange} />
+        <Navigation isSignedIn={isSignedIn} onRouteChange = {onRouteChange} />
         <Logo />
         {
             route === 'home' ?
