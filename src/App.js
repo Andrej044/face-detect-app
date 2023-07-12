@@ -6,7 +6,7 @@ import Rank from './components/Rank/Rank';
 import Logo from './components/logo/Logo';
 import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/faceRecognition/FaceRecognition';
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
@@ -102,7 +102,7 @@ const returnClarifaiRequestOptions = (url) => {
     const PAT = '1b43454f514e47ed9fc75b63f48df8a7';
     const USER_ID = 'andrej044';       
     const APP_ID = 'smart-brain';
-    const MODEL_ID = 'face-detection';
+    // const MODEL_ID = 'face-detection';
     const IMAGE_URL = url;
 
     const raw = JSON.stringify({
@@ -145,6 +145,13 @@ function App() {
     const [route, setRoute] = useState('signin');
     
     const [isSignedIn, setSignedIn] = useState(false);
+
+    // useEffect(()=>{
+    //     fetch("http://localhost:3000/")
+    //         .then(response => response.json())
+    //         .then(console.log)
+    //         .catch((error)=> console.log(error))
+    // })
 
     const onRouteChange = (route) => {
         if(route === "signout") {
