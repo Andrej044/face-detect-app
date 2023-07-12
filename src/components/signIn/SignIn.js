@@ -1,6 +1,10 @@
-
+import { useState } from "react"
 
 const SignIn = ({onRouteChange}) => {
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
+
+  
   return(
     <div className="mw6 br3 pa3 pa4-ns mv3 ba b--black-10 shadow-5 center">
       <div className="pa4 black-80">
