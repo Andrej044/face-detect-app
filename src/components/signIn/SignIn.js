@@ -4,7 +4,15 @@ const SignIn = ({onRouteChange}) => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
 
-  
+  const onEmailChange = (e) => {
+    console.log(e.target.value);
+    setEmail(e.target.value);
+  }
+  const onPasswordChange = (e) => {
+    console.log(e.target.value)
+    setPassword(e.target.value);
+  }
+
   return(
     <div className="mw6 br3 pa3 pa4-ns mv3 ba b--black-10 shadow-5 center">
       <div className="pa4 black-80">
@@ -13,11 +21,21 @@ const SignIn = ({onRouteChange}) => {
             <legend className="f1 fw6 ph0 mh0">Sign In</legend>
             <div className="mt3">
               <label className="db fw6 lh-copy f4" htmlFor="email-address">Email</label>
-              <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" />
+              <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+              type="email" 
+              name="email-address"  
+              id="email-address" 
+              onChange={onEmailChange} 
+              />
             </div>
             <div className="mv3">
-              <label className="db fw6 lh-copy f4" htmlFor="password">Password</label>
-              <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" />
+              <label className="db fw6 lh-copy f4" htmlFor="password" >Password</label>
+              <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+               type="password" 
+               name="password"  
+               id="password" 
+               onChange={onPasswordChange}
+               />
             </div>
           </fieldset>
           <div className="">
