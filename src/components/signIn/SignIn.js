@@ -5,12 +5,28 @@ const SignIn = ({onRouteChange}) => {
   const [ password, setPassword ] = useState("");
 
   const onEmailChange = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   }
   const onPasswordChange = (e) => {
-    console.log(e.target.value)
     setPassword(e.target.value);
+  }
+
+  const onSubmitSignIn =() =>{
+
+    fetch('http://localhost:5501/signin', {
+      method:'post',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data === 'success'){
+        onRouteChange('home');
+      }
+    })
   }
 
   return(
@@ -39,7 +55,7 @@ const SignIn = ({onRouteChange}) => {
             </div>
           </fieldset>
           <div className="">
-            <input onClick={() => onRouteChange('home')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib" type="submit" value="Sign in"/>
+            <input onClick={onSubmitSignIn} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib" type="button" value="Sign in"/>
           </div>
           <div className="lh-copy mt3">
             <p  className="f5 link dim black db pointer" onClick={() => onRouteChange('register')}>Register</p>
