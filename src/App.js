@@ -146,6 +146,14 @@ function App() {
     
     const [isSignedIn, setSignedIn] = useState(false);
 
+    const [user, setUser] = useState({
+        id:"",
+        name: "",
+        email: "",
+        entries:0,
+        joined: new Date(),
+    });
+
     // useEffect(()=>{
     //     fetch("http://localhost:3000/")
     //         .then(response => response.json())
