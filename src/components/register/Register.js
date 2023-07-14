@@ -1,6 +1,20 @@
-
+import { useState } from "react";
 
 const RegisterForm = ({onRouteChange}) =>{
+
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
+  const [ name, setName ] = useState("");
+
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
+  }
+  const onPasswordChange = (e) => {
+    setPassword(e.target.value);
+  }
+  const onNameChange = (e) => {
+    setName(e.target.value);
+  }
 
   return(
     <div className="mw6 br3 pa3 pa4-ns mv3 ba b--black-10 shadow-5 center">
