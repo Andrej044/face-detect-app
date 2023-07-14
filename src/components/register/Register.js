@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const RegisterForm = ({onRouteChange}) =>{
+const RegisterForm = ({onRouteChange, loadUser}) =>{
 
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
@@ -16,7 +16,7 @@ const RegisterForm = ({onRouteChange}) =>{
     setName(e.target.value);
   }
   const onRegistrationSubmit = () => {
-    fetch('http://localhost:5501/signin', {
+    fetch('http://localhost:5501/register', {
       method: "post",
       headers:{'Content-Type' : 'application/json'},
       body:JSON.stringify({
@@ -27,8 +27,9 @@ const RegisterForm = ({onRouteChange}) =>{
     })
     .then(response => response.json())
     .then(user => {
-      if(user === 'succes'){
-        onRouteChange('home')
+      if(user){
+        loadUser(user);
+        onRouteChange('home');
       }
     })
   }
@@ -69,7 +70,7 @@ const RegisterForm = ({onRouteChange}) =>{
             </div>
           </fieldset>
           <div className="">
-            <input onClick={onRegistrationSubmit} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib" type="submit" value="Register"/>
+            <input onClick={onRegistrationSubmit} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib" type="button" value="Register"/>
           </div>
         </form>
       </div>
