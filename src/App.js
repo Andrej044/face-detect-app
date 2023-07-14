@@ -158,7 +158,9 @@ function App() {
         setUser({
             id:data.id,
             name:data.name,
-            email:data.email
+            email:data.email,
+            entries:data.entries,
+            joined: data.joined,
         })
     }
 
@@ -224,12 +226,12 @@ return (
         {
             route === 'home' ?
         <>
-            <Rank/>
+            <Rank name={user.name} entries={user.entries}/>
             <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
             <FaceRecognition imageUrl={imageUrl} box = {box}/>
         </>: (
             route === 'signin' ?
-            <SignIn onRouteChange = {onRouteChange}/> :
+            <SignIn onRouteChange = {onRouteChange} loadUser={loadUser}/> :
             <RegisterForm onRouteChange = {onRouteChange} loadUser = {loadUser}/>
             ) 
         }
