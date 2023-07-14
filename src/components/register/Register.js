@@ -15,6 +15,23 @@ const RegisterForm = ({onRouteChange}) =>{
   const onNameChange = (e) => {
     setName(e.target.value);
   }
+  const onRegistrationSubmit = () => {
+    fetch('http://localhost:5501/signin', {
+      method: "post",
+      headers:{'Content-Type' : 'application/json'},
+      body:JSON.stringify({
+        email:email,
+        password:password,
+        name:name
+      })
+    })
+    .then(response => response.json())
+    .then(user => {
+      if(user === 'succes'){
+        onRouteChange('home')
+      }
+    })
+  }
 
   return(
     <div className="mw6 br3 pa3 pa4-ns mv3 ba b--black-10 shadow-5 center">
@@ -52,7 +69,7 @@ const RegisterForm = ({onRouteChange}) =>{
             </div>
           </fieldset>
           <div className="">
-            <input onClick={() => onRouteChange('home')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib" type="submit" value="Register"/>
+            <input onClick={onRegistrationSubmit} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib" type="submit" value="Register"/>
           </div>
         </form>
       </div>
