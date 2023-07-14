@@ -151,7 +151,7 @@ function App() {
         name: "",
         email: "",
         entries:0,
-        joined: new Date(),
+        joined: "",
     });
 
     // useEffect(()=>{
