@@ -154,6 +154,14 @@ function App() {
         joined: "",
     });
 
+    const loadUser = (data) => {
+        setUser({
+            id:data.id,
+            name:data.name,
+            email:data.email
+        })
+    }
+
     // useEffect(()=>{
     //     fetch("http://localhost:3000/")
     //         .then(response => response.json())
@@ -222,10 +230,10 @@ return (
         </>: (
             route === 'signin' ?
             <SignIn onRouteChange = {onRouteChange}/> :
-            <RegisterForm onRouteChange = {onRouteChange}/>
+            <RegisterForm onRouteChange = {onRouteChange} loadUser = {loadUser}/>
             ) 
         }
-    </div>
+    </div> 
 );
 }
 
