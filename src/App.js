@@ -203,7 +203,24 @@ function App() {
         setImageUrl(inputUrl);
         fetch("https://api.clarifai.com/v2/models/" + 'face-detection' +  "/outputs", returnClarifaiRequestOptions(inputUrl))
         .then(response => response.json())
-        .then(result => getBoxFaceData(result))
+        .then(response => {
+            if(response){
+                fetch('http://localhost:5501/image', {
+                    method:'put',
+                    headers:{'Content-Type':'application/json'},
+                    body: JSON.stringify({
+                      id: user.id
+                    })
+                })
+                .then(response => response.json())
+                .then(count => {
+                    setUser(Object.assign(user, {
+                        entries:count
+                    }))
+                })
+            }
+            getBoxFaceData(response);
+        })
         .catch(error => console.log('error', error));
 
     }
