@@ -134,11 +134,19 @@ const returnClarifaiRequestOptions = (url) => {
 }
 
 
+const initialUserState = {        
+    id:"",
+    name: "",
+    email: "",
+    entries:0,
+    joined: ""
+}
+
 function App() {
 
-    const [inputUrl, setInput] = useState(" ");
+    const [inputUrl, setInput] = useState("");
 
-    const [imageUrl, setImageUrl] = useState(" ");
+    const [imageUrl, setImageUrl] = useState("");
 
     const [boxList, setBoxList] = useState([]);
 
@@ -167,6 +175,11 @@ function App() {
     const onRouteChange = (route) => {
         if(route === "signout") {
             setSignedIn(false);
+            setUser(initialUserState);
+            setBoxList([]);
+            setInput("");
+            setRoute("signin");
+            setImageUrl("");
         } else if(route === "home"){
             setSignedIn(true);
         }
