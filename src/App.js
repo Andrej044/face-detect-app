@@ -195,7 +195,7 @@ function App() {
 
     const onPictureSubmit = () => {
         setImageUrl(inputUrl);
-        fetch("https://api.clarifai.com/v2/models/" + 'face-detection' +  "/outputs", returnClarifaiRequestOptions(inputUrl))
+        fetch("https://api.clarifai.com/v2/models/face-detection/outputs", returnClarifaiRequestOptions(inputUrl))
         .then(response => response.json())
         .then(response => {
             if(response){
