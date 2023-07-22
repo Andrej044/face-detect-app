@@ -6,7 +6,7 @@ import Rank from './components/Rank/Rank';
 import Logo from './components/logo/Logo';
 import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/faceRecognition/FaceRecognition';
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState} from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
@@ -25,7 +25,7 @@ const particlesOptions = {
             value: "#ff0000",
             animation: {
                 enable: true,
-                speed: 5,
+                speed: 1,
                 sync: false,
             },
         },
@@ -140,7 +140,7 @@ function App() {
 
     const [imageUrl, setImageUrl] = useState(" ");
 
-    const [box, setBox] = useState({});
+    const [boxList, setBoxList] = useState([]);
 
     const [route, setRoute] = useState('signin');
     
@@ -164,13 +164,6 @@ function App() {
         })
     }
 
-    // useEffect(()=>{
-    //     fetch("http://localhost:3000/")
-    //         .then(response => response.json())
-    //         .then(console.log)
-    //         .catch((error)=> console.log(error))
-    // })
-
     const onRouteChange = (route) => {
         if(route === "signout") {
             setSignedIn(false);
@@ -180,19 +173,20 @@ function App() {
         setRoute(route);
     }
 
-    const getBoxFaceData = (box) => {
+    const getBoxFaceData = (boxes) => {
         const img = document.getElementById("face-recognise-img");
         const imgWidth = Number(img.width); 
         const imgHeight = Number(img.height); 
 
-        const {bottom_row, left_col, right_col, top_row} = box.outputs[0].data.regions[0].region_info.bounding_box;
-       
-        setBox({
-        top:top_row * imgHeight,
-        left:left_col * imgWidth,
-        right:imgWidth - (imgWidth * right_col),
-        bottom:imgHeight - (imgHeight * bottom_row)
-        })
+        setBoxList(boxes.outputs[0].data.regions.map(box => {
+            const {bottom_row, left_col, right_col, top_row} = box.region_info.bounding_box;
+            return {    
+                        top:top_row * imgHeight,
+                        left:left_col * imgWidth,
+                        right:imgWidth - (imgWidth * right_col),
+                        bottom:imgHeight - (imgHeight * bottom_row)
+                    }
+        }))
     }
 
     const onInputChange = (event) => {
@@ -245,7 +239,7 @@ return (
         <>
             <Rank name={user.name} entries={user.entries}/>
             <ImageLinkForm onInputChange={onInputChange} onPictureSubmit={onPictureSubmit}/>
-            <FaceRecognition imageUrl={imageUrl} box = {box}/>
+            <FaceRecognition imageUrl={imageUrl} boxList = {boxList}/>
         </>: (
             route === 'signin' ?
             <SignIn onRouteChange = {onRouteChange} loadUser={loadUser}/> :
