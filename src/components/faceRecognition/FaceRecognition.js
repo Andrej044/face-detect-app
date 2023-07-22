@@ -1,8 +1,6 @@
 import "./FaceRecognition.css"
 
 const FaceRecognition = ({imageUrl, boxList}) => {
-
-  console.log(boxList) 
   const faceBoxes = boxList.map( (box, index) => {
     return  <div key={index} className="face-box" style={{top:box.top, bottom:box.bottom, left:box.left, right:box.right}}></div>
   })
