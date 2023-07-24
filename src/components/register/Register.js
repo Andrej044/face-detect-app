@@ -47,6 +47,7 @@ const RegisterForm = ({onRouteChange, loadUser}) =>{
                 type="text" 
                 name="name"  
                 id="name"
+                required
                 onChange={onNameChange} />
             </div>
             <div className="mt3">
@@ -56,6 +57,8 @@ const RegisterForm = ({onRouteChange, loadUser}) =>{
                 type="email" 
                 name="email-address"  
                 id="email-address" 
+                placeholder="johndow@gmail.com"
+                required
                 onChange={onEmailChange}
                 />
             </div>
@@ -66,6 +69,7 @@ const RegisterForm = ({onRouteChange, loadUser}) =>{
                 type="password" 
                 name="password"  
                 id="password"
+                required
                 onChange={onPasswordChange} />
             </div>
           </fieldset>
