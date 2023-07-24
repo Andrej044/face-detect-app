@@ -45,6 +45,7 @@ const SignIn = ({onRouteChange, loadUser}) => {
               type="email" 
               name="email-address"  
               id="email-address" 
+              placeholder="johndow@gmail.com"
               onChange={onEmailChange} 
               />
             </div>
