@@ -28,6 +28,9 @@ const SignIn = ({onRouteChange, loadUser}) => {
         onRouteChange('home');
       }
     })
+    .catch(err => {
+      console.log("Fetch error: " + err);
+    })
   }
 
   return(
