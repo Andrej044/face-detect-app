@@ -225,6 +225,9 @@ function App() {
                         entries:count
                     }))
                 })
+                .catch(err => {
+                    console.log("Fetch error: " + err);
+                })
             }
             getBoxFaceData(response);
         })
