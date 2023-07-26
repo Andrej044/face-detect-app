@@ -98,42 +98,6 @@ const particlesOptions = {
     },
 }
 
-const returnClarifaiRequestOptions = (url) => {
-    const PAT = '1b43454f514e47ed9fc75b63f48df8a7';
-    const USER_ID = 'andrej044';       
-    const APP_ID = 'smart-brain';
-    // const MODEL_ID = 'face-detection';
-    const IMAGE_URL = url;
-
-    const raw = JSON.stringify({
-        "user_app_id": {
-            "user_id": USER_ID,
-            "app_id": APP_ID
-        },
-        "inputs": [
-            {
-                "data": {
-                    "image": {
-                        "url": IMAGE_URL
-                    }
-                }
-            }
-        ]
-    });
-    
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': 'Key ' + PAT
-        },
-        body: raw
-    };
-
-    return requestOptions;
-}
-
-
 const initialUserState = {        
     id:"",
     name: "",
@@ -191,7 +155,7 @@ function App() {
         const imgWidth = Number(img.width); 
         const imgHeight = Number(img.height); 
 
-        setBoxList(boxes.outputs[0].data.regions.map(box => {
+        setBoxList(boxes.map(box => {
             const {bottom_row, left_col, right_col, top_row} = box.region_info.bounding_box;
             return {    
                         top:top_row * imgHeight,
@@ -208,7 +172,13 @@ function App() {
 
     const onPictureSubmit = () => {
         setImageUrl(inputUrl);
-        fetch("https://api.clarifai.com/v2/models/face-detection/outputs", returnClarifaiRequestOptions(inputUrl))
+        fetch('http://localhost:5501/imageurl', {
+            method:'post',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({
+              input: inputUrl
+            })
+        })
         .then(response => response.json())
         .then(response => {
             if(response){
@@ -219,8 +189,11 @@ function App() {
                       id: user.id
                     })
                 })
-                .then(response => response.json())
+                .then(response => {
+                  return  response.json();
+                })
                 .then(count => {
+                    console.log(count)
                     setUser(Object.assign(user, {
                         entries:count
                     }))
