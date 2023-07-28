@@ -50,7 +50,7 @@ const particlesOptions = {
         },
         move: {
             enable: true,
-            speed: 6,
+            speed: 2,
         },
     },
     interactivity: {
