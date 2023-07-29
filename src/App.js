@@ -7,7 +7,7 @@ import Logo from './components/logo/Logo';
 import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/faceRecognition/FaceRecognition';
 import { useCallback, useState} from "react";
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
 
