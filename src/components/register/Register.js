@@ -16,7 +16,7 @@ const RegisterForm = ({onRouteChange, loadUser}) =>{
     setName(e.target.value);
   }
   const onRegistrationSubmit = () => {
-    fetch('http://localhost:5501/register', {
+    fetch('https://face-detect-api-2gko.onrender.com/register', {
       method: "post",
       headers:{'Content-Type' : 'application/json'},
       body:JSON.stringify({

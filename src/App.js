@@ -172,7 +172,7 @@ function App() {
 
     const onPictureSubmit = () => {
         setImageUrl(inputUrl);
-        fetch('http://localhost:5501/imageurl', {
+        fetch('https://face-detect-api-2gko.onrender.com/imageurl', {
             method:'post',
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify({
@@ -182,7 +182,7 @@ function App() {
         .then(response => response.json())
         .then(response => {
             if(response){
-                fetch('http://localhost:5501/image', {
+                fetch('https://face-detect-api-2gko.onrender.com/image', {
                     method:'put',
                     headers:{'Content-Type':'application/json'},
                     body: JSON.stringify({
